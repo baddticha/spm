@@ -25,7 +25,7 @@ def read_logged_time():
     """Read logged time from file."""
     if not os.path.exists(LOG_FILE):
         return 0
-    with open(LOG_FILE, "r") as f:
+    with open(LOG_FILE, "r") as f :
         data = f.readline().strip()
         try:
             log_date, time_spent = data.split(",")
