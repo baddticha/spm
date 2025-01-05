@@ -20,12 +20,11 @@ def get_steam_processes():
             continue
     return steam_processes
 
-
 def read_logged_time():
     """Read logged time from file."""
     if not os.path.exists(LOG_FILE):
         return 0
-    with open(LOG_FILE, "r") as f :
+    with open(LOG_FILE, "r") as f:
         data = f.readline().strip()
         try:
             log_date, time_spent = data.split(",")
@@ -45,7 +44,7 @@ def terminate_steam():
     for proc in get_steam_processes():
         try:
             proc.terminate()
-            proc.wait()
+            proc.wait(timeout=5)  # Wait up to 5 seconds
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             continue
 
@@ -77,7 +76,6 @@ def monitor_steam_usage():
             start_time = time.time()
 
         time.sleep(10)  # Check every 10 seconds
-
 
 if __name__ == "__main__":
     monitor_steam_usage()
