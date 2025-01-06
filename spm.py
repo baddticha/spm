@@ -9,7 +9,7 @@ DAILY_LIMIT = 4 * 3600  # 4 hours in seconds
 
 def get_steam_processes():
     """Check if Steam games are running, excluding Steam client processes."""
-    steam_processes = []
+    steam_processes =  []
     for proc in psutil.process_iter(attrs=["pid", "name"]):
         try:
             process_name = proc.info["name"].lower()
